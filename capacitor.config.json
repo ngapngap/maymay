@@ -1,0 +1,11 @@
+{
+  "appId": "com.may.phieuluuthuthapsao",
+  "appName": "Phiêu Lưu Thu Thập Sao",
+  "webDir": "www",
+  "android": {
+    "allowMixedContent": true
+  },
+  "server": {
+    "androidScheme": "https"
+  }
+}

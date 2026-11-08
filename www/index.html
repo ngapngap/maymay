@@ -1,0 +1,1054 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"/>
+<meta name="color-scheme" content="light dark"/>
+<link rel="icon" href="data:,"/>
+<title>Phiêu Lưu Thu Thập Sao — Cùng Mây học chữ và số</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Nunito:wght@600;700;800;900&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#FFF6E3; --bg2:#FFEFD0; --card:#FFFFFF; --card2:#FFFDF7;
+  --ink:#3B2D26; --ink2:#7A6558; --line:#F3DFC0;
+  --pink:#FF7AA2; --pink-d:#E84E7E; --coral:#FF8A5B; --yellow:#FFC93C; --yellow-d:#E8A90C;
+  --blue:#4A90D9; --blue-d:#2F6FB3; --mint:#58C39A; --mint-d:#2E9E74; --lav:#9B8CF2;
+  --star:#FFB800; --shadow:0 10px 30px rgba(180,120,40,.14);
+  --r-lg:28px; --r-md:20px; --r-sm:14px;
+}
+@media (prefers-color-scheme: dark){
+  :root{ --bg:#2A2019; --bg2:#332619; --card:#3A2C21; --card2:#433325; --ink:#FFF3E0; --ink2:#D8BFA6; --line:#5A4633; --shadow:0 10px 30px rgba(0,0,0,.35); }
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;font-family:'Nunito',system-ui,sans-serif;background:var(--bg);color:var(--ink);font-size:17px;line-height:1.55}
+h1,h2,h3,.font-display{font-family:'Baloo 2','Nunito',sans-serif;line-height:1.15;margin:0}
+button{font-family:inherit;cursor:pointer}
+img{max-width:100%;display:block}
+.wrap{max-width:1120px;margin:0 auto;padding:0 16px 64px}
+
+/* ===== Top bar ===== */
+.topbar{position:sticky;top:0;z-index:50;background:color-mix(in srgb, var(--bg) 88%, transparent);backdrop-filter:blur(10px);border-bottom:2px dashed var(--line)}
+.topbar-in{max-width:1120px;margin:0 auto;padding:10px 16px;display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.logo{display:flex;align-items:center;gap:10px;font-family:'Baloo 2';font-weight:800;font-size:20px;margin-right:auto}
+.logo-star{width:40px;height:40px;flex:none}
+.star-count{display:flex;align-items:center;gap:8px;background:var(--card);border:2px solid var(--line);border-radius:999px;padding:6px 16px 6px 8px;font-weight:900;font-size:19px;box-shadow:var(--shadow)}
+.star-count svg{width:30px;height:30px}
+.nav{display:flex;gap:8px;flex-wrap:wrap;width:100%}
+.nav-btn{flex:1;min-height:56px;border-radius:999px;border:3px solid var(--line);background:var(--card);color:var(--ink);font-family:'Baloo 2';font-weight:700;font-size:18px;padding:10px 14px;display:flex;align-items:center;justify-content:center;gap:8px;transition:transform .12s, background .12s}
+.nav-btn:active{transform:scale(.97)}
+.nav-btn.active{background:var(--yellow);border-color:var(--yellow-d);color:#4A3200}
+.nav-btn .nicon{font-size:22px;line-height:1}
+
+/* ===== Views ===== */
+.view{display:none}
+.view.show{display:block;animation:fadeIn .3s ease}
+@keyframes fadeIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+@media (prefers-reduced-motion: reduce){*{animation:none!important;transition:none!important}}
+
+/* ===== Hero ===== */
+.hero{margin-top:18px;border-radius:var(--r-lg);overflow:hidden;position:relative;background:var(--card);box-shadow:var(--shadow);border:2px solid var(--line)}
+.hero-bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.5}
+.hero-in{position:relative;display:grid;grid-template-columns:1.15fr .85fr;gap:8px;align-items:center;padding:28px 28px 8px}
+.hero h1{font-size:clamp(32px,6vw,54px);font-weight:800}
+.hero h1 .hl{color:var(--pink-d)}
+.hero .hello{display:inline-flex;align-items:center;gap:8px;background:#fff;border:2px solid var(--line);color:#8a5a00;font-weight:900;border-radius:999px;padding:6px 16px;font-size:17px;margin-bottom:12px;box-shadow:var(--shadow)}
+@media (prefers-color-scheme: dark){.hero .hello{background:var(--card);color:var(--yellow)}}
+.hero p.lead{font-size:19px;color:var(--ink2);font-weight:700;margin:12px 0 20px;max-width:46ch}
+.hero-img{align-self:center;padding-bottom:18px}
+.hero-img img{max-height:430px;width:auto;margin:0 auto;border-radius:20px;border:3px solid #fff;box-shadow:0 14px 28px rgba(160,100,20,.22)}
+.cta-row{display:flex;gap:12px;flex-wrap:wrap}
+.btn{min-height:60px;border-radius:999px;border:none;font-family:'Baloo 2';font-weight:800;font-size:20px;padding:12px 26px;display:inline-flex;align-items:center;gap:10px;justify-content:center;transition:transform .12s;box-shadow:0 6px 0 rgba(0,0,0,.12)}
+.btn:active{transform:translateY(3px) scale(.98);box-shadow:0 2px 0 rgba(0,0,0,.12)}
+.btn-star{background:var(--yellow);color:#4A3200}
+.btn-pink{background:var(--pink);color:#fff}
+.btn-blue{background:var(--blue);color:#fff}
+.btn-mint{background:var(--mint);color:#fff}
+.btn-ghost{background:var(--card);color:var(--ink);border:3px solid var(--line);box-shadow:none}
+.btn-big{min-height:68px;font-size:23px;padding:14px 32px}
+
+/* ===== Sections / cards ===== */
+.section{margin-top:34px}
+.section h2{font-size:clamp(24px,4vw,32px);font-weight:800;margin-bottom:6px}
+.section .sub{color:var(--ink2);font-weight:700;margin:0 0 16px}
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.card{background:var(--card);border:2px solid var(--line);border-radius:var(--r-lg);padding:20px;box-shadow:var(--shadow)}
+.card h3{font-size:21px;margin-bottom:6px}
+.card p{color:var(--ink2);font-weight:600;margin:0}
+.mood-card{padding:0;overflow:hidden;text-align:center}
+.mood-card img{width:100%;height:280px;object-fit:cover;object-position:center 22%}
+.mood-card .cap{padding:12px 14px 16px;font-family:'Baloo 2';font-weight:700;font-size:19px}
+.learn-card .big-emoji{font-size:52px;line-height:1;margin-bottom:10px}
+.sticker-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:12px}
+.sticker{aspect-ratio:1;border-radius:22px;background:var(--card2);border:2.5px dashed var(--line);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;padding:8px;text-align:center}
+.sticker .s-emoji{font-size:38px;filter:grayscale(1);opacity:.35}
+.sticker .s-name{font-size:13px;font-weight:800;color:var(--ink2)}
+.sticker.unlocked{border-style:solid;border-color:var(--yellow);background:#FFF3C4}
+@media (prefers-color-scheme: dark){.sticker.unlocked{background:#5A4517}}
+.sticker.unlocked .s-emoji{filter:none;opacity:1}
+.sticker.unlocked .s-name{color:var(--ink)}
+
+/* ===== Dress-up ===== */
+.dress-layout{display:grid;grid-template-columns:400px 1fr;gap:20px;align-items:start}
+.stage{position:sticky;top:150px;background:linear-gradient(180deg,#BEE7FF 0%,#E8F7FF 55%,#FFF3C4 100%);border-radius:var(--r-lg);border:2px solid var(--line);box-shadow:var(--shadow);padding:18px 12px 10px;text-align:center;overflow:hidden}
+@media (prefers-color-scheme: dark){.stage{background:linear-gradient(180deg,#274b63 0%,#2e5a74 55%,#5a4a22 100%)}}
+.stage-name{font-family:'Baloo 2';font-weight:800;font-size:22px;margin-top:4px}
+.stage-actions{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:12px}
+.stage-actions .btn{min-height:58px;font-size:18px;padding:10px 12px}
+.stage-actions .btn-wide{grid-column:1/-1}
+.opt-group{background:var(--card);border:2px solid var(--line);border-radius:var(--r-lg);padding:18px;margin-bottom:16px;box-shadow:var(--shadow)}
+.opt-group h3{font-size:20px;display:flex;align-items:center;gap:8px;margin-bottom:12px}
+.fav-strip{display:flex;gap:12px;flex-wrap:wrap}
+.fav-item{width:104px;background:var(--card2);border:3px solid var(--line);border-radius:20px;padding:8px 6px 6px;text-align:center;cursor:pointer;font-family:inherit}
+.fav-item:active{transform:scale(.96)}
+.fav-item span{font-family:'Baloo 2';font-weight:700;font-size:14px}
+.fav-empty{color:var(--ink2);font-weight:700}
+.fav-item .fav-photo{width:64px;height:96px;object-fit:cover;object-position:center 12%;border-radius:12px;margin:0 auto}
+.stage-photo{width:100%;max-width:236px;height:auto;margin:0 auto;border-radius:20px;border:3px solid #fff;box-shadow:0 14px 28px rgba(160,100,20,.22)}
+.game-photo{width:100%;max-width:150px;height:auto;margin:0 auto 4px;border-radius:18px;border:3px solid #fff;box-shadow:var(--shadow)}
+.stage-look{font-weight:800;color:var(--ink2);font-size:15px;margin-top:2px}
+.look-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.look-card{border:3px solid var(--line);background:var(--card2);border-radius:20px;padding:8px;cursor:pointer;font-family:inherit;text-align:center;transition:transform .1s}
+.look-card:active{transform:scale(.96)}
+.look-card img{width:100%;aspect-ratio:3/4;object-fit:cover;object-position:center 12%;border-radius:14px}
+.look-card span{display:block;font-family:'Baloo 2';font-weight:800;font-size:16px;margin-top:8px;color:var(--ink)}
+.look-card.sel{border-color:var(--pink-d);background:#FFE3EE}
+@media (prefers-color-scheme: dark){.look-card.sel{background:#5c2b3e}}
+.toast{background:var(--ink);color:var(--bg);border-radius:999px;padding:10px 20px;font-weight:800;display:none;margin-top:12px}
+.toast.show{display:inline-block;animation:fadeIn .25s}
+
+/* ===== Game ===== */
+.path{display:flex;align-items:center;gap:0;margin:18px 0 6px;flex-wrap:nowrap;overflow:visible}
+.path-dot{flex:1;display:flex;flex-direction:column;align-items:center;gap:3px;position:relative}
+.path-dot::before{content:"";position:absolute;top:19px;left:-50%;width:100%;height:6px;background:var(--line);border-radius:3px;z-index:0}
+.path-dot:first-child::before{display:none}
+.path-dot .dot{width:38px;height:38px;border-radius:50%;background:var(--card);border:3px solid var(--line);display:flex;align-items:center;justify-content:center;font-weight:900;font-size:15px;position:relative;z-index:1;color:var(--ink2)}
+.path-dot.done .dot{background:var(--yellow);border-color:var(--yellow-d);color:#4A3200}
+.path-dot.now .dot{background:var(--pink);border-color:var(--pink-d);color:#fff;transform:scale(1.18);box-shadow:0 0 0 6px rgba(255,122,162,.25)}
+.path-dot .lbl{font-size:11px;font-weight:800;color:var(--ink2)}
+.game-layout{display:grid;grid-template-columns:300px 1fr;gap:20px;align-items:start;margin-top:14px}
+.game-side{background:linear-gradient(180deg,#BEE7FF,#FFF3C4);border-radius:var(--r-lg);border:2px solid var(--line);padding:16px 10px 8px;text-align:center;box-shadow:var(--shadow)}
+@media (prefers-color-scheme: dark){.game-side{background:linear-gradient(180deg,#274b63,#5a4a22)}}
+.bubble{background:#fff;color:#3B2D26;border-radius:18px;padding:10px 14px;font-weight:800;font-size:16px;margin:10px 8px 12px;position:relative;box-shadow:var(--shadow)}
+.bubble::after{content:"";position:absolute;top:-9px;left:50%;transform:translateX(-50%);border:10px solid transparent;border-bottom-color:#fff;border-top:0}
+.q-card{background:var(--card);border:2px solid var(--line);border-radius:var(--r-lg);box-shadow:var(--shadow);padding:24px}
+.q-tag{display:inline-block;border-radius:999px;padding:5px 14px;font-family:'Baloo 2';font-weight:800;font-size:15px;margin-bottom:12px}
+.q-tag.chu{background:#FFE3EE;color:#8A1F44}.q-tag.so{background:#DFF3FF;color:#17507E}.q-tag.dem{background:#E2F7EC;color:#14663F}
+@media (prefers-color-scheme: dark){.q-tag.chu{background:#5c2b3e;color:#FFD3E2}.q-tag.so{background:#234a66;color:#CDEBFF}.q-tag.dem{background:#1f4d35;color:#CFF5DE}}
+.q-visual{font-size:56px;text-align:center;line-height:1.25;letter-spacing:4px;padding:10px 0 2px;word-break:break-word}
+.q-text{font-size:clamp(22px,3.6vw,30px);font-family:'Baloo 2';font-weight:700;text-align:center;margin:8px 0 4px}
+.q-word{font-size:clamp(30px,5vw,44px);text-align:center;font-family:'Baloo 2';font-weight:800;letter-spacing:6px;color:var(--pink-d);margin:4px 0}
+.q-word .blank{display:inline-block;min-width:.9em;border-bottom:6px solid var(--pink);color:var(--yellow-d)}
+.answers{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:20px}
+.ans-btn{min-height:76px;border-radius:22px;border:3.5px solid var(--line);background:var(--card2);color:var(--ink);font-family:'Baloo 2';font-weight:800;font-size:34px;padding:10px;transition:transform .1s}
+.ans-btn:active{transform:scale(.95)}
+.ans-btn.correct{background:#D9F7E6;border-color:var(--mint-d);color:#14663F;animation:pop .4s}
+.ans-btn.wrong{background:#FFE1E1;border-color:#E86A6A;color:#8A2424;animation:shake .35s}
+@keyframes pop{40%{transform:scale(1.12)}}
+@keyframes shake{20%,60%{transform:translateX(-6px)}40%,80%{transform:translateX(6px)}}
+.q-tools{display:flex;gap:10px;justify-content:center;margin-top:18px;flex-wrap:wrap}
+.tool-btn{min-height:52px;border-radius:999px;border:2.5px solid var(--line);background:var(--card);color:var(--ink);font-weight:800;font-size:16px;padding:8px 18px;display:inline-flex;gap:8px;align-items:center}
+.feedback{min-height:34px;text-align:center;font-family:'Baloo 2';font-weight:800;font-size:21px;margin-top:14px}
+.feedback.good{color:var(--mint-d)}.feedback.try{color:var(--coral)}
+.progress-line{height:16px;background:var(--card2);border:2px solid var(--line);border-radius:99px;overflow:hidden;margin-top:6px}
+.progress-fill{height:100%;background:linear-gradient(90deg,var(--yellow),var(--coral));width:0%;transition:width .5s ease;border-radius:99px}
+.mode-row{display:flex;gap:10px;flex-wrap:wrap;margin-top:16px}
+.mode-btn{flex:1;min-width:150px;min-height:60px;border-radius:20px;border:3px solid var(--line);background:var(--card);color:var(--ink);font-family:'Baloo 2';font-weight:800;font-size:18px;padding:10px}
+.mode-btn.active{background:#DFF3FF;border-color:var(--blue);color:#17507E}
+@media (prefers-color-scheme: dark){.mode-btn.active{background:#234a66;color:#CDEBFF}}
+.finish{display:none;text-align:center}
+.finish.show{display:block}
+.finish img{max-height:340px;width:auto;margin:0 auto;border-radius:var(--r-lg)}
+.burst-star{position:fixed;z-index:99;pointer-events:none;font-size:26px;animation:burst 1s ease-out forwards}
+@keyframes burst{to{transform:translate(var(--dx),var(--dy)) rotate(160deg) scale(.4);opacity:0}}
+footer{margin-top:44px;text-align:center;color:var(--ink2);font-weight:700;font-size:15px}
+.note{background:var(--card);border:2px dashed var(--line);border-radius:var(--r-lg);padding:18px 20px;margin-top:16px}
+.note p{margin:0;color:var(--ink2);font-weight:600}
+.note strong{color:var(--ink)}
+
+/* ===== Puzzle ===== */
+.pz-home-card{display:flex;gap:18px;align-items:center;flex-wrap:wrap}
+.pz-home-card img{width:104px;height:auto;border-radius:16px;border:3px solid #fff;box-shadow:var(--shadow)}
+.pz-home-card p{font-weight:800;font-size:18px;margin:0 0 12px}
+.pz-status{background:var(--card);border:2px solid var(--line);border-radius:var(--r-lg);box-shadow:var(--shadow);padding:14px 18px;text-align:center;font-family:'Baloo 2';font-weight:800;font-size:20px}
+.pz-board{display:grid;grid-template-columns:repeat(2,1fr);gap:8px;max-width:400px;margin:14px auto 0}
+.pz-slot{position:relative;aspect-ratio:9/8;border-radius:16px;overflow:hidden;border:3px dashed var(--line);background:var(--card2);cursor:pointer;padding:0;width:100%}
+.pz-slot.filled{border:3px solid var(--mint-d);cursor:default}
+.pz-slot.filled .slice{animation:pop .4s}
+.pz-slot.shake{animation:shake .35s}
+.pz-num{position:absolute;right:7px;bottom:5px;z-index:2;width:28px;height:28px;border-radius:50%;background:#fff;color:#8A5A00;border:2px solid var(--yellow-d);font-family:'Baloo 2';font-weight:800;font-size:16px;display:flex;align-items:center;justify-content:center;box-shadow:var(--shadow)}
+.slice{position:absolute;inset:0;overflow:hidden}
+.slice img{position:absolute;width:200%;height:300%;max-width:none}
+.slice.ghost{opacity:.25;filter:grayscale(.6)}
+.pz-tray{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin-top:6px;min-height:60px}
+.pz-piece{position:relative;width:104px;aspect-ratio:9/8;border-radius:16px;overflow:hidden;border:3.5px solid var(--line);background:var(--card2);cursor:pointer;padding:0;flex:none;transition:transform .1s}
+.pz-piece.sel{border-color:var(--pink-d);transform:scale(1.07);box-shadow:0 0 0 5px rgba(255,122,162,.3)}
+.pz-msg{min-height:32px;text-align:center;font-family:'Baloo 2';font-weight:800;font-size:20px;margin-top:12px}
+.pz-tray-title{text-align:center;font-size:19px;margin:16px 0 4px}
+.pz-locked{text-align:center;margin-top:16px}
+.pz-locked img{max-height:360px;width:auto;margin:0 auto;border-radius:var(--r-lg);filter:grayscale(.9);opacity:.45}
+.pz-locked p{font-weight:800;font-size:19px;margin:14px 0}
+.pz-done{text-align:center;margin-top:16px}
+.pz-done img{max-height:460px;width:auto;margin:0 auto;border-radius:var(--r-lg);border:4px solid var(--yellow);box-shadow:var(--shadow)}
+.pz-done p{font-family:'Baloo 2';font-weight:800;font-size:21px;margin:14px 0}
+.pz-collection{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+.pz-col-item{background:var(--card);border:2.5px solid var(--yellow);border-radius:20px;padding:8px;text-align:center;box-shadow:var(--shadow)}
+.pz-col-item img{width:100%;aspect-ratio:3/4;object-fit:cover;object-position:center 15%;border-radius:14px}
+.pz-col-item span{display:block;font-family:'Baloo 2';font-weight:800;font-size:15px;margin-top:6px}
+
+/* ===== Responsive ===== */
+@media (max-width:900px){
+  .hero-in{grid-template-columns:1fr;padding:22px 20px 0;text-align:center}
+  .hero .lead{margin-left:auto;margin-right:auto}
+  .cta-row{justify-content:center}
+  .hero-img img{max-height:320px}
+  .grid3{grid-template-columns:1fr}
+  .grid2{grid-template-columns:1fr}
+  .sticker-grid{grid-template-columns:repeat(3,1fr)}
+  .pz-collection{grid-template-columns:repeat(2,1fr)}
+  .pz-piece{width:92px}
+  .dress-layout{grid-template-columns:1fr}
+  .stage{position:static}
+  .game-layout{grid-template-columns:1fr}
+  .answers{grid-template-columns:1fr}
+  .ans-btn{min-height:68px}
+  .path-dot .lbl{display:none}
+  .path-dot .dot{width:30px;height:30px;font-size:13px}
+  .path-dot::before{top:15px}
+}
+</style>
+</head>
+<body>
+<header class="topbar">
+  <div class="topbar-in">
+    <div class="logo">
+      <svg class="logo-star" viewBox="0 0 48 48" aria-hidden="true"><path d="M24 3l6.2 13.4 14.6 1.7-10.8 10 2.9 14.4L24 35.4l-12.9 7.1L14 28.1 3.2 18.1l14.6-1.7z" fill="#FFC93C" stroke="#E8A90C" stroke-width="2.5" stroke-linejoin="round"/></svg>
+      <span>Phiêu Lưu Thu Thập Sao</span>
+    </div>
+    <div class="star-count" aria-label="Số sao đã thu thập">
+      <svg viewBox="0 0 48 48" aria-hidden="true"><path d="M24 3l6.2 13.4 14.6 1.7-10.8 10 2.9 14.4L24 35.4l-12.9 7.1L14 28.1 3.2 18.1l14.6-1.7z" fill="#FFC93C" stroke="#E8A90C" stroke-width="2.5" stroke-linejoin="round"/></svg>
+      <span id="starTotal">0</span><span style="font-size:15px;color:var(--ink2)">sao</span>
+    </div>
+    <nav class="nav" aria-label="Chọn màn chơi">
+      <button class="nav-btn active" data-view="home"><span class="nicon">🏠</span> Trang chủ</button>
+      <button class="nav-btn" data-view="dress"><span class="nicon">👗</span> Phòng thay đồ</button>
+      <button class="nav-btn" data-view="game"><span class="nicon">⭐</span> Đi phiêu lưu</button>
+    </nav>
+  </div>
+</header>
+
+<main class="wrap">
+
+<!-- ================= HOME ================= -->
+<section class="view show" id="view-home">
+  <div class="hero">
+    <img class="hero-bg" src="assets/img-e2d3c8c205.webp" alt="">
+    <div class="hero-in">
+      <div>
+        <span class="hello">☁️ Xin chào Mây! Hôm nay Mây đi nhặt sao nhé?</span>
+        <h1>Cùng <span class="hl">Mây</span> phiêu lưu<br>thu thập sao ✨</h1>
+        <p class="lead">Mây mang ba lô sao, cầm gậy sao vàng, đi qua đảo Mây — vừa đi vừa học <strong>chữ cái tiếng Việt</strong> và <strong>cộng trừ trong phạm vi 20</strong>. Trả lời đúng là nhặt được sao, nhặt đủ sao là mở được sticker xinh!</p>
+        <div class="cta-row">
+          <button class="btn btn-star btn-big" id="btnStart">⭐ Bắt đầu phiêu lưu</button>
+          <button class="btn btn-pink btn-big" id="btnGoDress">👗 Thay đồ cho Mây</button>
+        </div>
+        <div class="mode-row" role="group" aria-label="Chọn kiểu chơi">
+          <button class="mode-btn active" data-mode="mix">🌈 Chơi tất cả</button>
+          <button class="mode-btn" data-mode="chu">🔤 Chỉ học chữ</button>
+          <button class="mode-btn" data-mode="so">🔢 Chỉ học số</button>
+        </div>
+      </div>
+      <div class="hero-img">
+        <img src="assets/img-8cdd2baf00.webp" alt="Mây kiểu bán thực, trẻ đúng 7 tuổi: bé gái tóc bob đen thẳng ngang vai, mái ngang, mặt tròn má bầu, cằm ngắn, mắt vừa tự nhiên nâu đen, lông mày nhạt mảnh, cười nhẹ, áo thun sọc đen trắng, dây chuyền bạc mảnh, ba lô xanh có sao vàng, kẹp tóc sao, quần short nâu, giày xanh có sao, cầm gậy sao vàng đang vẫy tay chào trong lớp học">
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>Ba cách chơi cùng Mây 🎈</h2>
+    <p class="sub">Mỗi ván có 12 chặng ngắn — chơi 5 đến 10 phút là xong, không có thua, chỉ có thử lại thôi.</p>
+    <div class="grid3">
+      <div class="card learn-card"><div class="big-emoji">🔤</div><h3>Học chữ cái</h3><p>Tìm chữ đầu tiên của từ, điền chữ còn thiếu vào chỗ trống — như M_È_O là con gì nhỉ?</p></div>
+      <div class="card learn-card"><div class="big-emoji">🔢</div><h3>Học cộng trừ</h3><p>Cộng và trừ trong phạm vi 20, có hình ngôi sao và trái cây để Mây đếm cùng cho dễ.</p></div>
+      <div class="card learn-card"><div class="big-emoji">👀</div><h3>Đếm sao</h3><p>Đếm xem có bao nhiêu ngôi sao, bông hoa, quả táo trên màn hình rồi chọn số đúng.</p></div>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>Góc của Mây ☁️</h2>
+    <p class="sub">Mây bản bán thực, đúng 7 tuổi: mặt tròn má bầu, cằm ngắn, mũi nhỏ, mắt vừa tự nhiên, lông mày nhạt mảnh, tóc bob đen ngang vai mái ngang, dây chuyền bạc mảnh — cùng áo sọc, ba lô xanh sao vàng, kẹp tóc sao và gậy sao.</p>
+    <div class="grid3">
+      <div class="card mood-card"><img src="assets/img-8cdd2baf00.webp" alt="Mây bán thực vui vẻ vẫy tay chào trong lớp học, cầm gậy sao vàng"><div class="cap">😊 Mây vui vẻ — sẵn sàng đi chơi!</div></div>
+      <div class="card mood-card"><img src="assets/img-a941d8162e.webp" alt="Mây bán thực ngồi đọc sách tranh trong lớp học, ba lô sao xanh bên cạnh"><div class="cap">📖 Mây đọc sách — giờ học chữ</div></div>
+      <div class="card mood-card"><img src="assets/img-56a61225d6.webp" alt="Mây bán thực giơ cao gậy sao, xung quanh là những ngôi sao vàng bay lấp lánh"><div class="cap">⭐ Mây tìm sao — giờ đi phiêu lưu</div></div>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>Bộ sưu tập sticker của Mây 🏆</h2>
+    <p class="sub">Cứ nhặt được thêm 2 sao là Mây mở được một sticker mới. Chơi lại nhiều lần để mở hết nhé!</p>
+    <div class="sticker-grid" id="stickerGrid"></div>
+  </div>
+
+  <div class="section">
+    <h2>Góc ghép hình của Mây 🧩</h2>
+    <p class="sub">Mỗi câu trả lời đúng trong chuyến phiêu lưu cho Mây 1 mảnh ghép. Đủ 6 mảnh là ghép được một bức tranh hoàn chỉnh của Mây!</p>
+    <div class="card pz-home-card">
+      <img src="assets/img-56a61225d6.webp" alt="Tranh ghép đầu tiên: Mây giơ cao gậy sao giữa những ngôi sao vàng lấp lánh">
+      <div>
+        <p id="homePieceText">Đang nhặt mảnh cho tranh “Mây và ngôi sao lớn”: 0/6 mảnh.</p>
+        <button class="btn btn-blue btn-big" id="btnGoPuzzle">🧩 Vào phòng ghép hình</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="note">
+    <p><strong>Dành cho bố mẹ:</strong> nhân vật trong game là tranh bán thực vẽ lại từ ảnh của bé, đúng nét trẻ 7 tuổi, trang này không đăng ảnh thật của Mây. Phòng thay đồ có 4 bộ vẽ sẵn từ ảnh của Mây — mặc định áo sọc, váy hồng, hai bím áo vàng, mũ vàng phiêu lưu — bé chạm vào thẻ là mặc ngay. Trả lời đúng còn cho bé 1 mảnh ghép — đủ 6 mảnh sẽ ghép được một bức tranh hoàn chỉnh của Mây và lưu vào bộ sưu tập tranh trong phiên chơi. Phần Thay đồ, điểm sao và tranh đã ghép chỉ giữ trong lúc đang mở trang để chơi.</p>
+  </div>
+</section>
+
+<!-- ================= DRESS-UP ================= -->
+<section class="view" id="view-dress">
+  <div class="section" style="margin-top:22px">
+    <h2>Phòng thay đồ của Mây 👗</h2>
+    <p class="sub">Mây có 4 bộ đồ vẽ sẵn từ ảnh của Mây — mặc định áo sọc, váy hồng, hai bím áo vàng, mũ vàng phiêu lưu — chạm vào thẻ là Mây mặc ngay bộ đó, mặc đi phiêu lưu luôn!</p>
+  </div>
+  <div class="dress-layout">
+    <div class="stage">
+      <img class="stage-photo" id="stagePhoto" src="assets/img-8cdd2baf00.webp" alt="Mây mặc định: áo thun sọc đen trắng, ba lô xanh có sao vàng, kẹp tóc sao, cầm gậy sao vàng">
+      <div class="stage-name">☁️ Mây</div>
+      <div class="stage-look" id="stageLookName">✨ Đang mặc: Bộ mặc định — áo sọc &amp; ba lô sao</div>
+      <div class="stage-actions">
+        <button class="btn btn-blue" id="btnRandom">🎲 Ngẫu nhiên</button>
+        <button class="btn btn-pink" id="btnSaveFav">💖 Lưu bộ này</button>
+        <button class="btn btn-ghost" id="btnResetOutfit">↩️ Bộ mặc định</button>
+        <button class="btn btn-star" id="btnWearGo">⭐ Đi phiêu lưu</button>
+      </div>
+      <div><span class="toast" id="dressToast"></span></div>
+    </div>
+    <div id="dressControls"></div>
+  </div>
+  <div class="opt-group" style="margin-top:16px">
+    <h3>💖 Bộ đồ yêu thích của Mây</h3>
+    <div class="fav-strip" id="favStrip"><span class="fav-empty">Chưa có bộ nào được lưu. Chọn một bộ thật xinh rồi bấm “Lưu bộ này” nhé!</span></div>
+  </div>
+</section>
+
+<!-- ================= GAME ================= -->
+<section class="view" id="view-game">
+  <div class="path" id="pathRow" aria-label="Đường đi thu thập sao"></div>
+  <div style="display:flex;justify-content:space-between;flex-wrap:wrap;gap:2px 12px;font-weight:800;color:var(--ink2);font-size:15px"><span id="roundLabel">Chặng 1 / 12</span><span id="pieceLabel">🧩 0/6 mảnh</span><span id="starLabel">⭐ 0 sao trong ván này</span></div>
+  <div class="progress-line"><div class="progress-fill" id="progressFill"></div></div>
+
+  <div class="game-layout" id="gameLayout">
+    <aside class="game-side">
+      <img class="game-photo" id="gamePhoto" src="assets/img-8cdd2baf00.webp" alt="Mây mặc định: áo thun sọc đen trắng, ba lô xanh có sao vàng, kẹp tóc sao, cầm gậy sao vàng">
+      <div class="bubble" id="mayBubble">Mây sẵn sàng rồi! Chọn đáp án đúng để nhặt sao nhé ⭐</div>
+      <button class="btn btn-pink" id="btnSideDress" style="min-height:52px;font-size:17px;margin-bottom:10px">👗 Đổi đồ cho Mây</button>
+      <button class="btn btn-blue" id="btnSidePuzzle" style="min-height:52px;font-size:17px;margin-bottom:12px">🧩 Ghép hình (0/6)</button>
+    </aside>
+    <div class="q-card" id="qCard">
+      <span class="q-tag chu" id="qTag">🔤 Học chữ</span>
+      <div class="q-visual" id="qVisual"></div>
+      <div class="q-text" id="qText">Câu hỏi</div>
+      <div class="q-word" id="qWord" style="display:none"></div>
+      <div class="answers" id="answers"></div>
+      <div class="feedback" id="feedback" aria-live="polite"></div>
+      <div class="q-tools">
+        <button class="tool-btn" id="btnSpeak">🔊 Nghe câu hỏi</button>
+        <button class="tool-btn" id="btnHint">💡 Gợi ý</button>
+        <button class="tool-btn" id="btnSkip">⏭️ Bỏ qua câu này</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="q-card finish" id="finishCard" style="margin-top:14px">
+    <h2 style="font-size:34px">🎉 Mây giỏi quá! Hoàn thành rồi!</h2>
+    <p style="font-weight:700;color:var(--ink2)" id="finishText"></p>
+    <p style="font-weight:800;font-size:18px" id="finishPuzzleText"></p>
+    <img src="assets/img-56a61225d6.webp" alt="Mây bán thực giơ cao gậy sao ăn mừng giữa những ngôi sao vàng lấp lánh">
+    <div class="cta-row" style="justify-content:center;margin-top:16px">
+      <button class="btn btn-blue btn-big" id="btnFinishPuzzle" style="display:none">🧩 Ghép hình ngay!</button>
+      <button class="btn btn-star btn-big" id="btnPlayAgain">⭐ Chơi lại ván mới</button>
+      <button class="btn btn-pink btn-big" id="btnFinishDress">👗 Thay đồ cho Mây</button>
+    </div>
+  </div>
+</section>
+
+<!-- ================= PUZZLE ================= -->
+<section class="view" id="view-puzzle">
+  <div class="section" style="margin-top:22px">
+    <h2>Phòng ghép hình của Mây 🧩</h2>
+    <p class="sub">Trả lời đúng mỗi câu đố trong chuyến phiêu lưu là nhặt được 1 mảnh ghép. Đủ 6 mảnh là vào đây ghép thành một bức tranh hoàn chỉnh của Mây!</p>
+  </div>
+  <div class="pz-status" id="pzStatus"></div>
+  <div id="pzPlay" style="display:none">
+    <div class="pz-board" id="pzBoard"></div>
+    <div class="pz-msg" id="pzMsg" aria-live="polite"></div>
+    <h3 class="pz-tray-title">🧺 Khay mảnh ghép</h3>
+    <p style="text-align:center;color:var(--ink2);font-weight:700;margin:0">Chạm 1 mảnh trong khay, rồi chạm vào ô có <strong>cùng số</strong> trên bảng nhé!</p>
+    <div class="pz-tray" id="pzTray"></div>
+  </div>
+  <div class="pz-locked" id="pzLocked" style="display:none">
+    <img id="pzLockedImg" src="assets/img-56a61225d6.webp" alt="Tranh đang chờ đủ mảnh ghép, hiện mờ">
+    <p id="pzLockedText"></p>
+    <button class="btn btn-star btn-big" id="btnLockedGo">⭐ Đi phiêu lưu nhặt mảnh</button>
+  </div>
+  <div class="pz-done" id="pzDone" style="display:none">
+    <img id="pzDoneImg" src="assets/img-56a61225d6.webp" alt="Bức tranh Mây hoàn chỉnh vừa ghép xong">
+    <p id="pzDoneText"></p>
+    <div class="cta-row" style="justify-content:center">
+      <button class="btn btn-star btn-big" id="btnDoneGo">⭐ Phiêu lưu tiếp, nhặt mảnh mới</button>
+      <button class="btn btn-blue btn-big" id="btnDoneAgain">🔁 Ghép lại tranh này</button>
+    </div>
+  </div>
+  <div class="section">
+    <h2>Bộ sưu tập tranh đã ghép 🏆</h2>
+    <p class="sub">Mỗi bức tranh ghép xong sẽ được lưu vào đây trong lúc Mây đang chơi.</p>
+    <div class="pz-collection" id="pzCollection"></div>
+  </div>
+</section>
+
+<footer>Làm bằng cả trái tim cho Mây ☁️⭐ — chơi vui, học vui, mỗi ngày một chút.</footer>
+</main>
+
+<script>
+/* ============================================================
+   PHÒNG THAY ĐỒ — chỉ dùng 4 bộ ảnh bán thực vẽ sẵn của Mây.
+   Nhân vật SVG vẽ bằng code và các nút tự phối cũ đã bỏ hẳn:
+   mặt Mây trong ảnh luôn giữ nguyên, bé chạm thẻ là mặc ngay.
+============================================================ */
+var favorites = [];
+
+/* ---------- Bộ đồ ảnh bán thực (3 asset mới, mặt giữ nguyên chỉ đổi đồ/tóc) ---------- */
+var LOOKS = {
+  'mac-dinh': { name:'Bộ mặc định — áo sọc & ba lô sao', src:'assets/img-8cdd2baf00.webp', alt:'Mây mặc định: áo thun sọc đen trắng, ba lô xanh có sao vàng, kẹp tóc sao, cầm gậy sao vàng' },
+  'vay-hong': { name:'Váy hồng công chúa', src:'assets/img-0a8a3982e0.webp', alt:'Mây mặc váy hồng điểm sao vàng, giày hồng, đeo túi chéo xanh, tóc bob đen mái ngang, dây chuyền bạc mảnh' },
+  'hai-bim': { name:'Hai bím — áo vàng, quần jean', src:'assets/img-e6d2786d50.webp', alt:'Mây tóc tết hai bím buộc nơ vàng, áo thun vàng có ngôi sao, quần jean xanh, giày trắng, dây chuyền bạc mảnh' },
+  'mu-vang': { name:'Mũ vàng — áo khoác xanh, ba lô sao', src:'assets/img-2b69de5d35.webp', alt:'Mây đội mũ vàng có sao, áo khoác xanh, áo sọc đen trắng bên trong, quần kaki, ba lô sao xanh, giày trắng có sao vàng' }
+};
+var currentLook = 'mac-dinh';
+function updateLookUI(){
+  var look = LOOKS[currentLook] || LOOKS['mac-dinh'];
+  var sp = document.getElementById('stagePhoto');
+  var gp = document.getElementById('gamePhoto');
+  if(sp){ sp.src = look.src; sp.alt = look.alt; }
+  if(gp){ gp.src = look.src; gp.alt = look.alt; }
+  var ln = document.getElementById('stageLookName');
+  if(ln) ln.textContent = '✨ Đang mặc: ' + look.name;
+  document.querySelectorAll('.look-card').forEach(function(c){ c.classList.toggle('sel', c.getAttribute('data-look')===currentLook); });
+}
+function setLook(id){
+  currentLook = LOOKS[id] ? id : 'mac-dinh';
+  updateLookUI();
+}
+
+/* ---------- Xây phòng thay đồ ---------- */
+function buildDressControls(){
+  var html='';
+  html+='<div class="opt-group"><h3>✨ Bộ đồ có sẵn — giống Mây nhất</h3>'+
+    '<p style="margin:0 0 12px;color:var(--ink2);font-weight:700">Bốn bộ này vẽ sẵn từ ảnh của Mây: mặt giữ nguyên, chỉ đổi đồ và tóc thôi. Chạm vào một bộ là Mây mặc ngay, mặc đi phiêu lưu luôn!</p>'+
+    '<div class="look-grid">'+
+    '<button class="look-card" data-look="mac-dinh" type="button"><img src="assets/img-8cdd2baf00.webp" alt="Mây mặc định áo sọc đen trắng và ba lô sao xanh"><span>⭐ Mặc định — áo sọc</span></button>'+
+    '<button class="look-card" data-look="vay-hong" type="button"><img src="assets/img-0a8a3982e0.webp" alt="Mây mặc váy hồng công chúa"><span>👗 Váy hồng</span></button>'+
+    '<button class="look-card" data-look="hai-bim" type="button"><img src="assets/img-e6d2786d50.webp" alt="Mây tóc hai bím, áo vàng, quần jean"><span>🎀 Hai bím — áo vàng</span></button>'+
+    '<button class="look-card" data-look="mu-vang" type="button"><img src="assets/img-2b69de5d35.webp" alt="Mây đội mũ vàng, áo khoác xanh, ba lô sao"><span>🧢 Mũ vàng phiêu lưu</span></button>'+
+    '</div></div>';
+  document.getElementById('dressControls').innerHTML = html;
+  document.querySelectorAll('#dressControls .look-card').forEach(function(c){
+    c.addEventListener('click', function(){
+      setLook(c.getAttribute('data-look')); playPop();
+      showToast('Mây đã mặc: '+LOOKS[currentLook].name+' ✨');
+    });
+  });
+}
+function showToast(msg){
+  var t=document.getElementById('dressToast'); t.textContent=msg; t.classList.add('show');
+  setTimeout(function(){ t.classList.remove('show'); },2600);
+}
+function renderFavorites(){
+  var strip=document.getElementById('favStrip');
+  if(!favorites.length){ strip.innerHTML='<span class="fav-empty">Chưa có bộ nào được lưu. Chọn một bộ thật xinh rồi bấm “Lưu bộ này” nhé!</span>'; return; }
+  strip.innerHTML='';
+  favorites.forEach(function(f){
+    var lk=LOOKS[f.look]||LOOKS['mac-dinh'];
+    var btn=document.createElement('button'); btn.className='fav-item'; btn.type='button';
+    btn.innerHTML='<img class="fav-photo" src="'+lk.src+'" alt="'+lk.alt+'"><span>'+lk.name.split(' — ')[0]+' 💖</span>';
+    btn.addEventListener('click', function(){ setLook(f.look); showToast('Mây đã mặc lại: '+lk.name+' ✨'); });
+    strip.appendChild(btn);
+  });
+}
+document.getElementById('btnRandom').addEventListener('click', function(){
+  var ids=['mac-dinh','vay-hong','hai-bim','mu-vang'];
+  var next=currentLook;
+  while(next===currentLook) next=ids[Math.floor(Math.random()*ids.length)];
+  setLook(next); playPop(); showToast('Tada! Mây mặc bộ: '+LOOKS[next].name+' 🎲');
+});
+document.getElementById('btnResetOutfit').addEventListener('click', function(){
+  setLook('mac-dinh'); playPop(); showToast('Mây mặc lại bộ mặc định: áo sọc, ba lô sao xanh 💙');
+});
+document.getElementById('btnSaveFav').addEventListener('click', function(){
+  favorites.push({type:'look', look:currentLook});
+  renderFavorites();
+  showToast('Đã lưu “'+LOOKS[currentLook].name.split(' — ')[0]+'” vào bộ yêu thích 💖');
+  burstAt(window.innerWidth/2, 220);
+});
+</script>
+
+<script>
+/* ============================================================
+   ÂM THANH NHẸ (WebAudio) + ĐỌC CÂU HỎI
+============================================================ */
+var audioCtx=null;
+function ensureAudio(){
+  if(!audioCtx){ try{ audioCtx=new (window.AudioContext||window.webkitAudioContext)(); }catch(e){ audioCtx=null; } }
+  if(audioCtx&&audioCtx.state==='suspended'){ var p=audioCtx.resume(); if(p&&p.catch) p.catch(function(){}); }
+  loadVoices();
+}
+/* Mở khóa âm thanh ngay từ lần chạm / bấm phím đầu tiên ở bất cứ đâu,
+   để tiếng pop, tiếng đúng/sai và giọng đọc không bị trình duyệt chặn. */
+['pointerdown','touchend','keydown'].forEach(function(ev){
+  document.addEventListener(ev, function(){ ensureAudio(); }, {passive:true});
+});
+function tone(freq, t, dur, type){
+  if(!audioCtx) return;
+  var o=audioCtx.createOscillator(), g=audioCtx.createGain();
+  o.type=type||'sine'; o.frequency.value=freq;
+  g.gain.setValueAtTime(0.0001, audioCtx.currentTime+t);
+  g.gain.exponentialRampToValueAtTime(0.18, audioCtx.currentTime+t+0.03);
+  g.gain.exponentialRampToValueAtTime(0.0001, audioCtx.currentTime+t+dur);
+  o.connect(g); g.connect(audioCtx.destination); o.start(audioCtx.currentTime+t); o.stop(audioCtx.currentTime+t+dur+0.05);
+}
+function playPop(){ ensureAudio(); tone(520,0,0.12,'triangle'); }
+function playGood(){ ensureAudio(); tone(523,0,0.16); tone(659,0.1,0.16); tone(784,0.2,0.28); }
+function playTry(){ ensureAudio(); tone(330,0,0.18,'triangle'); tone(262,0.12,0.22,'triangle'); }
+/* ---------- Giọng đọc tiếng Việt ----------
+   Giọng của thiết bị tải KHÔNG đồng bộ: lần gọi getVoices() đầu tiên
+   thường trả về rỗng nên bản cũ không tìm thấy giọng tiếng Việt và
+   đọc không ra tiếng. Bản này nghe sự kiện voiceschanged, nhớ sẵn
+   giọng vi-VN, và khi bấm Nghe mà giọng chưa kịp tải thì chờ tối đa
+   600ms rồi mới đọc. Sau cancel() phải chờ một nhịp ngắn, nếu đọc
+   ngay lập tức thì Android thường nuốt mất câu. */
+var viVoice=null, voicesReady=false;
+function loadVoices(){
+  if(!('speechSynthesis' in window)) return null;
+  var vs=[];
+  try{ vs=speechSynthesis.getVoices()||[]; }catch(e){}
+  if(vs.length){
+    voicesReady=true;
+    viVoice=null;
+    for(var i=0;i<vs.length;i++){
+      var lang=(vs[i].lang||'').replace('_','-').toLowerCase();
+      if(lang==='vi-vn'){ viVoice=vs[i]; break; }
+      if(!viVoice && lang.indexOf('vi')===0) viVoice=vs[i];
+    }
+  }
+  return viVoice;
+}
+if('speechSynthesis' in window){
+  loadVoices();
+  try{ speechSynthesis.addEventListener('voiceschanged', loadVoices); }catch(e){}
+  if(speechSynthesis.onvoiceschanged!==undefined) speechSynthesis.onvoiceschanged=loadVoices;
+}
+var speakTimer=null;
+function speakNow(text){
+  var u=new SpeechSynthesisUtterance(text);
+  u.lang='vi-VN'; u.rate=0.92; u.pitch=1.1;
+  if(viVoice) u.voice=viVoice;
+  try{ speechSynthesis.resume(); }catch(e){}
+  speechSynthesis.speak(u);
+}
+function speak(text){
+  if(!('speechSynthesis' in window)) return;
+  try{
+    if(speakTimer){ clearTimeout(speakTimer); speakTimer=null; }
+    speechSynthesis.cancel();
+    if(voicesReady){ speakTimer=setTimeout(function(){ speakNow(text); },60); return; }
+    /* Giọng chưa tải xong: chờ voiceschanged, tối đa 600ms thì đọc luôn */
+    var done=false;
+    var go=function(){ if(done) return; done=true; speakNow(text); };
+    var onChange=function(){ loadVoices(); if(voicesReady){ try{ speechSynthesis.removeEventListener('voiceschanged', onChange); }catch(e){} go(); } };
+    try{ speechSynthesis.addEventListener('voiceschanged', onChange); }catch(e){}
+    loadVoices();
+    if(voicesReady) go(); else speakTimer=setTimeout(go,600);
+  }catch(e){}
+}
+function burstAt(x,y){
+  var em=['⭐','✨','🌟','💛'];
+  for(var i=0;i<14;i++){
+    var s=document.createElement('span'); s.className='burst-star'; s.textContent=em[i%em.length];
+    s.style.left=x+'px'; s.style.top=y+'px';
+    s.style.setProperty('--dx',(Math.random()*260-130)+'px');
+    s.style.setProperty('--dy',(Math.random()*-160-30)+'px');
+    document.body.appendChild(s);
+    (function(el){ setTimeout(function(){ el.remove(); },1050); })(s);
+  }
+}
+
+/* ============================================================
+   ĐIỀU HƯỚNG MÀN HÌNH
+============================================================ */
+function showView(name){
+  document.querySelectorAll('.view').forEach(function(v){ v.classList.remove('show'); });
+  document.getElementById('view-'+name).classList.add('show');
+  document.querySelectorAll('.nav-btn').forEach(function(b){ b.classList.toggle('active', b.getAttribute('data-view')===name); });
+  window.scrollTo({top:0, behavior:'smooth'});
+}
+document.querySelectorAll('.nav-btn').forEach(function(b){ b.addEventListener('click', function(){ ensureAudio(); if(b.getAttribute('data-view')==='game'){ startGame(); } else { showView(b.getAttribute('data-view')); } }); });
+document.getElementById('btnStart').addEventListener('click', function(){ startGame(); });
+document.getElementById('btnGoDress').addEventListener('click', function(){ showView('dress'); });
+document.getElementById('btnWearGo').addEventListener('click', function(){ startGame(); });
+document.getElementById('btnSideDress').addEventListener('click', function(){ showView('dress'); });
+document.getElementById('btnFinishDress').addEventListener('click', function(){ showView('dress'); });
+document.getElementById('btnPlayAgain').addEventListener('click', function(){ startGame(); });
+
+/* ============================================================
+   STICKER
+============================================================ */
+var STICKERS=[
+  {e:'☁️', n:'Đám mây'}, {e:'🌈', n:'Cầu vồng'}, {e:'🦊', n:'Bạn cáo'},
+  {e:'🍓', n:'Dâu tây'}, {e:'🚀', n:'Tên lửa'}, {e:'👑', n:'Vương miện'}
+];
+var totalStars=0;
+function renderStickers(){
+  var g=document.getElementById('stickerGrid'); g.innerHTML='';
+  STICKERS.forEach(function(s,i){
+    var unlocked = totalStars >= (i+1)*2;
+    var d=document.createElement('div'); d.className='sticker'+(unlocked?' unlocked':'');
+    d.innerHTML='<div class="s-emoji">'+s.e+'</div><div class="s-name">'+(unlocked? s.n : 'Cần '+((i+1)*2)+' sao')+'</div>';
+    g.appendChild(d);
+  });
+  document.getElementById('starTotal').textContent=totalStars;
+}
+
+/* ============================================================
+   CÂU HỎI — chữ cái tiếng Việt + cộng trừ phạm vi 20 + đếm
+============================================================ */
+var WORDS=[
+  {w:'MÈO', e:'🐱', first:'M', opts:['M','B','C']},
+  {w:'CHÓ', e:'🐶', first:'C', opts:['C','G','H']},
+  {w:'CÁ', e:'🐟', first:'C', opts:['C','T','M']},
+  {w:'HOA', e:'🌸', first:'H', opts:['H','B','N']},
+  {w:'SAO', e:'⭐', first:'S', opts:['S','M','L']},
+  {w:'GÀ', e:'🐔', first:'G', opts:['G','C','V']},
+  {w:'BÓNG', e:'⚽', first:'B', opts:['B','Đ','M']},
+  {w:'MÂY', e:'☁️', first:'M', opts:['M','N','S']},
+  {w:'SÁCH', e:'📖', first:'S', opts:['S','B','T']},
+  {w:'TRĂNG', e:'🌙', first:'T', opts:['T','M','H']},
+  {w:'BÚT', e:'✏️', first:'B', opts:['B','P','M']},
+  {w:'TÁO', e:'🍎', first:'T', opts:['T','C','S']}
+];
+var PRAISE=['Đúng rồi! Mây giỏi quá! ⭐','Tuyệt vời! Nhặt được 1 sao rồi!','Chính xác! Mây thông minh lắm!','Hoan hô! Thêm 1 sao vào ba lô!','Đúng luôn! Mây làm được rồi!'];
+var ENCOURAGE=['Gần đúng rồi, Mây thử lại nhé!','Không sao đâu, nghĩ thêm một chút nào!','Cố lên Mây, Mây làm được mà!'];
+var gameMode='mix', round=0, roundStars=0, currentQ=null, totalRounds=12, locked=false, hintUsed=false;
+var typeCycle=['chu','so','dem','chu','so','chu','dem','so','chu','so','dem','chu'];
+
+function shuffle(a){ var x=a.slice(); for(var i=x.length-1;i>0;i--){ var j=Math.floor(Math.random()*(i+1)); var t=x[i]; x[i]=x[j]; x[j]=t; } return x; }
+function makeLetterQ(){
+  var item=WORDS[Math.floor(Math.random()*WORDS.length)];
+  if(Math.random()<0.5){
+    return { type:'chu', tag:'🔤 Học chữ', visual:item.e, text:'Từ "'+item.w+'" bắt đầu bằng chữ nào?',
+      speak:'Từ '+item.w.split('').join(' ')+' bắt đầu bằng chữ nào?',
+      answers:item.opts, correct:item.first, hint:'Nhìn hình nhé: đây là "'+item.w+'". Chữ đầu tiên phát âm là "'+item.first+'".' };
+  }
+  var wordHtml=item.w.replace(item.first,'<span class="blank">?</span>');
+  return { type:'chu', tag:'🔤 Học chữ', visual:item.e, wordHtml:wordHtml, text:'Điền chữ còn thiếu để được từ đúng nhé!',
+    speak:'Điền chữ còn thiếu để được từ '+item.w,
+    answers:item.opts, correct:item.first, hint:'Hình này là "'+item.w+'" đó Mây. Thiếu chữ đầu tiên!' };
+}
+function makeMathQ(){
+  var add=Math.random()<0.55, a,b,ans,visual='';
+  if(add){ a=2+Math.floor(Math.random()*9); b=1+Math.floor(Math.random()*(Math.min(9,20-a))); ans=a+b; }
+  else { a=6+Math.floor(Math.random()*13); b=1+Math.floor(Math.random()*(a-1)); ans=a-b; }
+  if(add){ if(a+b<=10) visual='⭐'.repeat(a)+'➕'+'⭐'.repeat(b); }
+  else if(a<=10) visual='⭐'.repeat(a);
+  var opts=shuffle([ans, ans+1, ans-1<0?ans+2:ans-1].filter(function(v,i,arr){return arr.indexOf(v)===i;}));
+  while(opts.length<3) opts.push(ans+opts.length+2);
+  return { type:'so', tag:'🔢 Học số', visual:visual, text:'Mây tính nhé:  '+a+' '+(add?'+':'−')+' '+b+' = ?',
+    speak:a+(add?' cộng ':' trừ ')+b+' bằng mấy?',
+    answers:opts.map(String), correct:String(ans),
+    hint: add? 'Đếm tiếp từ '+a+' thêm '+b+' ngón tay nữa nhé!' : 'Đếm ngược từ '+a+' lùi '+b+' số nhé!' };
+}
+function makeCountQ(){
+  var sets=[['⭐','ngôi sao'],['🍎','quả táo'],['🌸','bông hoa'],['☁️','đám mây'],['🦋','con bướm']];
+  var s=sets[Math.floor(Math.random()*sets.length)];
+  var n=3+Math.floor(Math.random()*7);
+  var opts=shuffle([n, n+1, n-1]).map(String);
+  return { type:'dem', tag:'👀 Đếm sao', visual:s[0].repeat(n), text:'Có bao nhiêu '+s[1]+' vậy Mây?',
+    speak:'Đếm xem có bao nhiêu '+s[1]+' nhé',
+    answers:opts, correct:String(n), hint:'Đếm chậm từng cái một, chỉ tay theo nhé: 1, 2, 3...' };
+}
+function makeQ(type){
+  if(gameMode==='chu') type='chu';
+  if(gameMode==='so') type = (round%3===2)?'dem':'so';
+  if(type==='chu') return makeLetterQ();
+  if(type==='so') return makeMathQ();
+  return makeCountQ();
+}
+
+/* ---------- Vẽ đường đi + câu hỏi ---------- */
+function renderPath(){
+  var row=document.getElementById('pathRow'); row.innerHTML='';
+  var lbls=['Chữ','Số','Đếm','Chữ','Số','Chữ','Đếm','Số','Chữ','Số','Đếm','Chữ'];
+  for(var i=0;i<totalRounds;i++){
+    var d=document.createElement('div');
+    d.className='path-dot'+(i<round?' done':(i===round?' now':''));
+    d.innerHTML='<div class="dot">'+(i<round?'⭐':(i+1))+'</div><div class="lbl">'+lbls[i]+'</div>';
+    row.appendChild(d);
+  }
+  document.getElementById('roundLabel').textContent='Chặng '+Math.min(round+1,totalRounds)+' / '+totalRounds;
+  document.getElementById('starLabel').textContent='⭐ '+roundStars+' sao trong ván này';
+  document.getElementById('progressFill').style.width=(round/totalRounds*100)+'%';
+}
+function setBubble(t){ document.getElementById('mayBubble').textContent=t; }
+function renderQuestion(){
+  locked=false; hintUsed=false;
+  currentQ=makeQ(typeCycle[round%typeCycle.length]);
+  var tag=document.getElementById('qTag');
+  tag.textContent=currentQ.tag;
+  tag.className='q-tag '+(currentQ.type==='chu'?'chu':currentQ.type==='so'?'so':'dem');
+  document.getElementById('qVisual').textContent=currentQ.visual||'';
+  document.getElementById('qVisual').style.display=currentQ.visual?'block':'none';
+  document.getElementById('qText').textContent=currentQ.text;
+  var w=document.getElementById('qWord');
+  if(currentQ.wordHtml){ w.innerHTML=currentQ.wordHtml; w.style.display='block'; } else w.style.display='none';
+  document.getElementById('feedback').textContent='';
+  document.getElementById('feedback').className='feedback';
+  var box=document.getElementById('answers'); box.innerHTML='';
+  shuffle(currentQ.answers).forEach(function(a){
+    var b=document.createElement('button'); b.className='ans-btn'; b.type='button'; b.textContent=a;
+    b.addEventListener('click', function(ev){ answer(a,b,ev); });
+    box.appendChild(b);
+  });
+  renderPath();
+}
+function answer(a, btn, ev){
+  if(locked) return;
+  ensureAudio();
+  var fb=document.getElementById('feedback');
+  if(a===currentQ.correct){
+    locked=true; btn.classList.add('correct'); playGood();
+    roundStars++; totalStars++; renderStickers();
+    fb.textContent=PRAISE[Math.floor(Math.random()*PRAISE.length)]; fb.className='feedback good';
+    var pzMsg=earnPiece();
+    setBubble(pzMsg || 'Hoan hô! Mây nhặt được sao rồi ⭐');
+    var r=btn.getBoundingClientRect(); burstAt(r.left+r.width/2, r.top);
+    document.getElementById('starLabel').textContent='⭐ '+roundStars+' sao trong ván này';
+    setTimeout(nextRound, 1400);
+  } else {
+    btn.classList.add('wrong'); playTry();
+    fb.textContent=ENCOURAGE[Math.floor(Math.random()*ENCOURAGE.length)]; fb.className='feedback try';
+    setBubble('Không sao, Mây thử lại nhé! Mây làm được 💪');
+    setTimeout(function(){ btn.classList.remove('wrong'); },400);
+  }
+}
+function nextRound(){
+  round++;
+  if(round>=totalRounds){ finishGame(); return; }
+  renderQuestion();
+}
+function startGame(){
+  ensureAudio();
+  viewingDone=-1;
+  round=0; roundStars=0;
+  document.getElementById('finishCard').classList.remove('show');
+  document.getElementById('gameLayout').style.display='';
+  showView('game');
+  setBubble('Mây sẵn sàng rồi! Chọn đáp án đúng để nhặt sao nhé ⭐');
+  renderQuestion();
+}
+function finishGame(){
+  renderPath();
+  document.getElementById('progressFill').style.width='100%';
+  document.getElementById('gameLayout').style.display='none';
+  var fc=document.getElementById('finishCard'); fc.classList.add('show');
+  document.getElementById('finishText').textContent='Mây đã nhặt được '+roundStars+' sao trong ván này và có tổng cộng '+totalStars+' sao. '+(totalStars>=12?'Mây đã mở hết sticker rồi, giỏi quá đi!':'Chơi thêm để mở hết 6 sticker xinh nhé!');
+  var fpT=document.getElementById('finishPuzzleText');
+  var fpB=document.getElementById('btnFinishPuzzle');
+  if(puzzlePending){ fpT.textContent='🧩 Đủ 6 mảnh ghép cho tranh “'+PUZZLES[puzzleIdx].name+'” rồi — vào ghép hình thôi!'; fpB.style.display=''; }
+  else { fpT.textContent='🧩 Mây đang có '+pieceCount+'/6 mảnh ghép cho tranh “'+PUZZLES[puzzleIdx].name+'”. Chơi tiếp để nhặt đủ 6 mảnh nhé!'; fpB.style.display='none'; }
+  playGood(); setTimeout(playGood,350);
+  burstAt(window.innerWidth/2, 240);
+  fc.scrollIntoView({behavior:'smooth', block:'center'});
+}
+
+/* ---------- Công cụ câu hỏi ---------- */
+document.getElementById('btnSpeak').addEventListener('click', function(){ if(currentQ) speak(currentQ.speak||currentQ.text); });
+document.getElementById('btnHint').addEventListener('click', function(){
+  if(!currentQ) return;
+  var fb=document.getElementById('feedback');
+  fb.textContent='💡 '+currentQ.hint; fb.className='feedback';
+  speak(currentQ.hint); hintUsed=true;
+});
+document.getElementById('btnSkip').addEventListener('click', function(){ if(!locked){ locked=true; nextRound(); } });
+
+/* ---------- Chế độ chơi ---------- */
+document.querySelectorAll('.mode-btn').forEach(function(b){
+  b.addEventListener('click', function(){
+    document.querySelectorAll('.mode-btn').forEach(function(x){ x.classList.remove('active'); });
+    b.classList.add('active'); gameMode=b.getAttribute('data-mode'); playPop();
+  });
+});
+
+/* ============================================================
+   GHÉP HÌNH — trả lời đúng nhặt 1 mảnh, đủ 6 mảnh mở màn ghép.
+   Bảng ghép 2 cột × 3 hàng, cắt từ chính bức tranh (tỉ lệ 3:4):
+   mỗi mảnh là một lát cắt của ảnh, ô đích hiện hình mờ + số thứ
+   tự, mảnh trong khay cũng mang số của ô đích. Chạm mảnh rồi
+   chạm ô để đặt — hợp với bé 7 tuổi trên điện thoại.
+============================================================ */
+var PIECES_PER=6;
+var PUZZLES=[
+  { name:'Mây và ngôi sao lớn', src:'assets/img-56a61225d6.webp', alt:'Mây giơ cao gậy sao vàng giữa những ngôi sao lấp lánh' },
+  { name:'Mây khám phá đảo sao', src:'assets/img-56a61225d6.webp', alt:'Mây mang ba lô sao đi khám phá' },
+  { name:'Mây đọc sách', src:'assets/img-a941d8162e.webp', alt:'Mây ngồi đọc sách tranh trong lớp học' },
+  { name:'Mây vui vẻ', src:'assets/img-8cdd2baf00.webp', alt:'Mây vui vẻ vẫy tay chào' }
+];
+var puzzleIdx=0, pieceCount=0, puzzlePending=false;
+var completedPuzzles={}, viewingDone=-1;
+var assemblyFor=-1, placedMap={}, placedCount=0, selectedPiece=-1, trayOrder=[];
+
+function nextPuzzleIdx(){
+  for(var i=0;i<PUZZLES.length;i++) if(!completedPuzzles[i]) return i;
+  return 0;
+}
+function earnPiece(){
+  if(puzzlePending) return 'Đủ 6 mảnh rồi! Bấm nút 🧩 Ghép hình để ghép tranh “'+PUZZLES[puzzleIdx].name+'” nhé!';
+  pieceCount++;
+  if(pieceCount>=PIECES_PER){
+    pieceCount=PIECES_PER; puzzlePending=true; updatePieceUI();
+    return 'Đủ 6 mảnh ghép rồi! Bấm nút 🧩 Ghép hình để ghép tranh “'+PUZZLES[puzzleIdx].name+'” nhé!';
+  }
+  updatePieceUI();
+  return 'Hoan hô! Nhặt thêm 1 mảnh ghép 🧩 ('+pieceCount+'/6)';
+}
+function updatePieceUI(){
+  var pl=document.getElementById('pieceLabel');
+  if(pl) pl.textContent = puzzlePending ? '🧩 Đủ 6/6 mảnh — ghép hình thôi!' : '🧩 '+pieceCount+'/6 mảnh';
+  var ht=document.getElementById('homePieceText');
+  if(ht) ht.textContent = puzzlePending
+    ? 'Đủ 6 mảnh rồi! Tranh “'+PUZZLES[puzzleIdx].name+'” đang chờ Mây ghép!'
+    : 'Đang nhặt mảnh cho tranh “'+PUZZLES[puzzleIdx].name+'”: '+pieceCount+'/6 mảnh.';
+  var sp=document.getElementById('btnSidePuzzle');
+  if(sp) sp.textContent = puzzlePending ? '🧩 Ghép hình ngay!' : '🧩 Ghép hình ('+pieceCount+'/6)';
+}
+function sliceHTML(idx, ghost){
+  var col=idx%2, row=Math.floor(idx/2);
+  return '<span class="slice'+(ghost?' ghost':'')+'"><img src="'+PUZZLES[assemblyFor].src+'" alt="" style="left:'+(-col*100)+'%;top:'+(-row*100)+'%"></span>';
+}
+function startAssembly(idx){
+  assemblyFor=idx; placedMap={}; placedCount=0; selectedPiece=-1;
+  trayOrder=shuffle([0,1,2,3,4,5]);
+  renderAssembly();
+  setPuzzleMsg('Chạm 1 mảnh trong khay, rồi chạm vào ô có cùng số nhé!');
+}
+function renderAssembly(){
+  var board=document.getElementById('pzBoard'); board.innerHTML='';
+  for(var i=0;i<PIECES_PER;i++){
+    (function(i){
+      var s=document.createElement('button'); s.type='button';
+      s.className='pz-slot'+(placedMap[i]?' filled':'');
+      s.setAttribute('aria-label','Ô ghép số '+(i+1));
+      s.innerHTML = sliceHTML(i, !placedMap[i]) + (placedMap[i]?'':'<span class="pz-num">'+(i+1)+'</span>');
+      s.addEventListener('click', function(){ tapSlot(i, s); });
+      board.appendChild(s);
+    })(i);
+  }
+  var tray=document.getElementById('pzTray'); tray.innerHTML='';
+  trayOrder.forEach(function(i){
+    if(placedMap[i]) return;
+    var p=document.createElement('button'); p.type='button';
+    p.className='pz-piece'+(selectedPiece===i?' sel':'');
+    p.setAttribute('aria-label','Mảnh ghép số '+(i+1));
+    p.innerHTML = sliceHTML(i,false) + '<span class="pz-num">'+(i+1)+'</span>';
+    p.addEventListener('click', function(){
+      selectedPiece = (selectedPiece===i) ? -1 : i;
+      playPop(); renderAssembly();
+      setPuzzleMsg(selectedPiece>=0 ? 'Đã chọn mảnh số '+(i+1)+' — giờ chạm vào ô số '+(i+1)+' trên bảng nhé!' : 'Chạm 1 mảnh trong khay, rồi chạm vào ô có cùng số nhé!');
+    });
+    tray.appendChild(p);
+  });
+}
+function setPuzzleMsg(t){ var m=document.getElementById('pzMsg'); if(m) m.textContent=t; }
+function tapSlot(i, slotEl){
+  if(assemblyFor<0 || placedMap[i]) return;
+  if(selectedPiece<0){ setPuzzleMsg('Chọn 1 mảnh trong khay trước nhé, Mây! 🧺'); playPop(); return; }
+  if(selectedPiece===i){
+    placedMap[i]=true; placedCount++; selectedPiece=-1;
+    playGood();
+    var r=slotEl.getBoundingClientRect(); burstAt(r.left+r.width/2, r.top+r.height/2);
+    if(placedCount>=PIECES_PER){ completeAssembly(); return; }
+    renderAssembly();
+    setPuzzleMsg('Đúng rồi! 🎉 Còn '+(PIECES_PER-placedCount)+' mảnh nữa thôi!');
+  } else {
+    playTry();
+    slotEl.classList.add('shake');
+    setTimeout(function(){ slotEl.classList.remove('shake'); },400);
+    setPuzzleMsg('Mảnh số '+(selectedPiece+1)+' không thuộc ô số '+(i+1)+' đâu — tìm ô số '+(selectedPiece+1)+' nhé!');
+  }
+}
+function completeAssembly(){
+  var idx=assemblyFor;
+  completedPuzzles[idx]=true;
+  if(idx===puzzleIdx && puzzlePending){
+    puzzlePending=false; pieceCount=0; puzzleIdx=nextPuzzleIdx();
+  }
+  assemblyFor=-1; viewingDone=idx;
+  playGood(); setTimeout(playGood,320); setTimeout(playGood,640);
+  burstAt(window.innerWidth/2, 260); burstAt(window.innerWidth/3, 340); burstAt(window.innerWidth*2/3, 340);
+  renderPuzzleView(); updatePieceUI();
+}
+function renderCollection(){
+  var box=document.getElementById('pzCollection'); if(!box) return;
+  box.innerHTML='';
+  var any=false;
+  PUZZLES.forEach(function(pz,i){
+    if(!completedPuzzles[i]) return;
+    any=true;
+    var d=document.createElement('div'); d.className='pz-col-item';
+    d.innerHTML='<img src="'+pz.src+'" alt="'+pz.alt+'"><span>🏆 '+pz.name+'</span>';
+    box.appendChild(d);
+  });
+  if(!any) box.innerHTML='<span class="fav-empty">Chưa ghép xong bức tranh nào. Nhặt đủ 6 mảnh ghép rồi vào ghép bức tranh đầu tiên nhé!</span>';
+}
+function renderPuzzleView(){
+  renderCollection();
+  var status=document.getElementById('pzStatus');
+  var play=document.getElementById('pzPlay'), locked=document.getElementById('pzLocked'), done=document.getElementById('pzDone');
+  play.style.display='none'; locked.style.display='none'; done.style.display='none';
+  if(assemblyFor>=0){
+    status.textContent='🧩 Đang ghép tranh “'+PUZZLES[assemblyFor].name+'” — còn '+(PIECES_PER-placedCount)+' mảnh!';
+    play.style.display=''; renderAssembly(); return;
+  }
+  if(puzzlePending){
+    status.textContent='🧩 Đủ 6 mảnh rồi! Ghép tranh “'+PUZZLES[puzzleIdx].name+'” nào, Mây!';
+    play.style.display=''; startAssembly(puzzleIdx); return;
+  }
+  if(viewingDone>=0){
+    var pz=PUZZLES[viewingDone];
+    status.textContent='🎉 Tranh hoàn chỉnh — đẹp quá đi!';
+    var di=document.getElementById('pzDoneImg'); di.src=pz.src; di.alt=pz.alt;
+    document.getElementById('pzDoneText').textContent='🎉 Mây ghép xong tranh “'+pz.name+'” rồi! Tranh đã được lưu vào Bộ sưu tập tranh đã ghép ở dưới.';
+    done.style.display=''; return;
+  }
+  var cur=PUZZLES[puzzleIdx];
+  status.textContent='🧩 Tranh “'+cur.name+'” đang chờ đủ mảnh…';
+  var li=document.getElementById('pzLockedImg'); li.src=cur.src; li.alt=cur.alt;
+  document.getElementById('pzLockedText').textContent='Còn thiếu '+(PIECES_PER-pieceCount)+' mảnh nữa mới ghép được tranh “'+cur.name+'”. Đi phiêu lưu, trả lời đúng mỗi câu là nhặt được 1 mảnh nhé!';
+  locked.style.display='';
+}
+function openPuzzle(){ showView('puzzle'); renderPuzzleView(); }
+document.getElementById('btnGoPuzzle').addEventListener('click', openPuzzle);
+document.getElementById('btnSidePuzzle').addEventListener('click', openPuzzle);
+document.getElementById('btnFinishPuzzle').addEventListener('click', openPuzzle);
+document.getElementById('btnLockedGo').addEventListener('click', function(){ startGame(); });
+document.getElementById('btnDoneGo').addEventListener('click', function(){ startGame(); });
+document.getElementById('btnDoneAgain').addEventListener('click', function(){
+  var idx=viewingDone; if(idx<0) return;
+  viewingDone=-1; startAssembly(idx); renderPuzzleView();
+});
+
+/* ---------- Khởi tạo ---------- */
+buildDressControls();
+updateLookUI();
+renderStickers();
+renderPath();
+updatePieceUI();
+renderCollection();
+</script>
+
+<!-- Tự cập nhật: kiểm tra GitHub Releases của ngapngap/maymay -->
+<div id="mayUpdateBanner" hidden style="position:fixed;left:12px;right:12px;bottom:12px;z-index:9999;background:#fff8d6;border:3px solid #f2b705;border-radius:20px;padding:14px 16px;box-shadow:0 8px 24px rgba(0,0,0,.25);font-family:inherit;text-align:center">
+  <div style="font-size:20px;font-weight:800;color:#7a5200">🎉 Có bản mới cho Mây!</div>
+  <div id="mayUpdateText" style="font-size:16px;margin:6px 0 10px;color:#5b4300"></div>
+  <button id="mayUpdateBtn" style="font-size:18px;font-weight:800;background:#f2b705;border:0;border-radius:14px;padding:12px 22px;margin-right:8px;cursor:pointer">⬇️ Cập nhật bản mới</button>
+  <button id="mayUpdateLater" style="font-size:16px;background:#eee;border:0;border-radius:14px;padding:12px 18px;cursor:pointer">Để sau</button>
+  <div id="mayUpdateNote" style="font-size:14px;margin-top:8px;color:#7a5200"></div>
+</div>
+<script>
+(function(){
+  var CURRENT = { code: 3, name: "1.2" };
+  var REPO = "ngapngap/maymay";
+  var banner = document.getElementById('mayUpdateBanner');
+  var textEl = document.getElementById('mayUpdateText');
+  var noteEl = document.getElementById('mayUpdateNote');
+  var pendingApkUrl = null;
+
+  function parseTag(tag){
+    var m = /^v?(\d+)\.(\d+)(?:\.(\d+))?/.exec(String(tag || ""));
+    if (!m) return null;
+    return [parseInt(m[1],10), parseInt(m[2],10), parseInt(m[3] || "0",10)];
+  }
+  function cmpVer(a, b){
+    for (var i = 0; i < 3; i++){ if (a[i] !== b[i]) return a[i] - b[i]; }
+    return 0;
+  }
+  function note(msg){ if (noteEl) noteEl.textContent = msg; }
+
+  function fallbackDownload(url){
+    var a = document.createElement('a');
+    a.href = url; a.setAttribute('download', '');
+    document.body.appendChild(a); a.click(); a.remove();
+    note("Đang tải bản mới, tải xong bấm vào file APK để cài đặt nhé.");
+  }
+  function installApk(url){
+    var Cap = window.Capacitor;
+    try {
+      var plugin = null;
+      if (Cap && Cap.registerPlugin) plugin = Cap.registerPlugin('UpdatePlugin');
+      else if (Cap && Cap.Plugins && Cap.Plugins.UpdatePlugin) plugin = Cap.Plugins.UpdatePlugin;
+      if (plugin && plugin.downloadAndInstall) {
+        note("Đang tải bản mới...");
+        plugin.downloadAndInstall({ url: url }).then(function(res){
+          if (res && res.needsPermission) {
+            note("Máy chưa cho phép cài app ngoài: hãy bật 'Cho phép cài đặt từ nguồn không rõ' cho app này rồi bấm Cập nhật lại nhé.");
+          } else if (res && res.started) {
+            note("Đang tải bản mới, tải xong máy sẽ tự mở màn hình cài đặt.");
+          }
+        }).catch(function(){ fallbackDownload(url); });
+        return;
+      }
+    } catch (e) { /* rơi xuống tải thường */ }
+    fallbackDownload(url);
+  }
+
+  function checkUpdate(){
+    var ctrl = new AbortController();
+    var timer = setTimeout(function(){ ctrl.abort(); }, 8000);
+    fetch("https://api.github.com/repos/" + REPO + "/releases/latest",
+      { headers: { "Accept": "application/vnd.github+json" }, signal: ctrl.signal })
+      .then(function(r){ clearTimeout(timer); if (!r.ok) throw new Error("HTTP " + r.status); return r.json(); })
+      .then(function(rel){
+        var ver = parseTag(rel.tag_name);
+        if (!ver) return;
+        if (cmpVer(ver, parseTag(CURRENT.name)) <= 0) return; // không có bản mới
+        var apk = null;
+        (rel.assets || []).forEach(function(a){
+          if (a && a.browser_download_url && /\.apk$/i.test(a.name || "")) apk = a;
+        });
+        if (!apk) return;
+        pendingApkUrl = apk.browser_download_url;
+        textEl.textContent = "Bản mới " + rel.tag_name + " đã có, bản đang chơi là " + CURRENT.name + ".";
+        banner.hidden = false;
+      })
+      .catch(function(){ clearTimeout(timer); /* ngoại tuyến hoặc chưa có release: im lặng */ });
+  }
+
+  document.getElementById('mayUpdateBtn').addEventListener('click', function(){
+    if (pendingApkUrl) installApk(pendingApkUrl);
+  });
+  document.getElementById('mayUpdateLater').addEventListener('click', function(){
+    banner.hidden = true;
+  });
+
+  window.MayUpdate = { checkNow: checkUpdate, current: CURRENT };
+  if (document.readyState === "complete") setTimeout(checkUpdate, 2000);
+  else window.addEventListener('load', function(){ setTimeout(checkUpdate, 2000); });
+})();
+</script>
+
+</body>
+</html>
