@@ -43,10 +43,32 @@ jobs:
       # (loi "Failed to find package 'tools'"), nen step nay luon fail.
       # Runner ubuntu-latest da cai san Android SDK o
       # /usr/local/lib/android/sdk, Gradle tu tim thay qua ANDROID_HOME.
-      - name: Setup Gradle 8.2.1
-        uses: gradle/actions/setup-gradle@v3
-        with:
-          gradle-version: 8.2.1
+      #
+      # Khong dung gradle/actions/setup-gradle nua: tu 2026 services.gradle.org
+      # chuyen huong file tai ve sang GitHub Releases, khi GitHub bi su co
+      # (HTTP 504) thi buoc provision cua action nay luon that bai. Tai Gradle
+      # bang curl voi nhieu lan thu lai de chiu dung loi mang tam thoi.
+      - name: Download Gradle 8.2.1 (co thu lai khi loi mang)
+        run: |
+          ZIP="$RUNNER_TEMP/gradle-8.2.1-bin.zip"
+          ok=0
+          for attempt in 1 2 3 4 5 6; do
+            echo "Lan thu tai Gradle: $attempt"
+            if curl -fSL --retry 5 --retry-delay 15 --retry-all-errors \
+                 --connect-timeout 30 -o "$ZIP" \
+                 https://services.gradle.org/distributions/gradle-8.2.1-bin.zip; then
+              ok=1
+              break
+            fi
+            rm -f "$ZIP"
+            sleep 45
+          done
+          if [ "$ok" -ne 1 ]; then
+            echo "::error::Khong tai duoc Gradle 8.2.1 sau 6 lan thu"
+            exit 1
+          fi
+          unzip -q "$ZIP" -d "$RUNNER_TEMP/gradle-dist"
+          echo "$RUNNER_TEMP/gradle-dist/gradle-8.2.1/bin" >> "$GITHUB_PATH"
 
       - name: Build debug APK
         working-directory: android
