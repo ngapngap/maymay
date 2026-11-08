@@ -38,9 +38,11 @@ jobs:
           distribution: temurin
           java-version: 17
 
-      - name: Setup Android SDK
-        uses: android-actions/setup-android@v3
-
+      # Khong dung android-actions/setup-android nua: action nay goi
+      # `sdkmanager tools` nhung goi `tools` da bi Google xoa khoi SDK
+      # (loi "Failed to find package 'tools'"), nen step nay luon fail.
+      # Runner ubuntu-latest da cai san Android SDK o
+      # /usr/local/lib/android/sdk, Gradle tu tim thay qua ANDROID_HOME.
       - name: Setup Gradle 8.2.1
         uses: gradle/actions/setup-gradle@v3
         with:
